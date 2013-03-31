@@ -1,16 +1,16 @@
 #include "ClockDisplay.h"
 #include "Arduino.h"
 
-ClockDisplayConsole::ClockDisplayConsole()
+ConsoleClockDisplay::ConsoleClockDisplay()
 {
     Serial.begin(115200);
 }
 
-ClockDisplayConsole::~ClockDisplayConsole()
+ConsoleClockDisplay::~ConsoleClockDisplay()
 {
 }
 
-void ClockDisplayConsole::displayTime(int hour, int minute, int second)
+void ConsoleClockDisplay::displayTime(int hour, int minute, int second)
 {
     char displayString[9];
     sprintf(displayString, "%02d:%02d:%02d", hour, minute, second);
@@ -18,14 +18,14 @@ void ClockDisplayConsole::displayTime(int hour, int minute, int second)
     
 }
 
-void ClockDisplayConsole::displayDate(int month, int day, int year)
+void ConsoleClockDisplay::displayDate(int month, int day, int year)
 {
     char displayString[9];
     sprintf(displayString, "%02d-%02d-%04d", month, day, year);
     Serial.println(displayString);
 }
 
-void ClockDisplayConsole::setTimeProvider(TimeProvider* provider)
+void ConsoleClockDisplay::setTimeProvider(TimeProvider* provider)
 {
 }
 

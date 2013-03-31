@@ -11,10 +11,10 @@ class ClockDisplay {
         //virtual void setHourMode(HourMode mode) = 0;
 };
 
-class ClockDisplayConsole : public ClockDisplay {
+class ConsoleClockDisplay : public ClockDisplay {
     public:
-        ClockDisplayConsole();
-        ~ClockDisplayConsole();
+        ConsoleClockDisplay();
+        ~ConsoleClockDisplay();
         void displayTime(int hour, int minute, int second);
         void displayDate(int month, int day, int year);
         void setTimeProvider(TimeProvider* provider);
