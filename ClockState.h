@@ -2,14 +2,18 @@
 
 class ClockState {
     public:
+        ClockState() { };
+        ~ClockState() { };
         virtual void enter() = 0;
         virtual void exit() = 0;
-        virtual void onEncoderLeft();
-        virtual void onEncoderRight();
+        virtual void onEncoderLeft() {};
+        virtual void onEncoderRight() {};
         virtual int getHour() = 0;
         virtual int getMinute() = 0;
-        virtual void tick() = 0;
-        virtual void setDisplay(ClockDisplay* timeDisplay) = 0;
+        virtual void tick();
+        virtual void setDisplay(ClockDisplay* timeDisplay);
+    protected:
+        ClockDisplay* display;
 };
 
 class SetTimeState : public ClockState {
@@ -22,7 +26,6 @@ class SetTimeState : public ClockState {
         void onEncoderLeft();
         int getHour();
         int getMinute();
-        void tick();
     private:
         void setIncrement();
         volatile int increment;
@@ -39,8 +42,4 @@ class DisplayTimeState : public ClockState {
         void exit();
         int getHour();
         int getMinute();
-        void tick();
-        void setDisplay(ClockDisplay* timeDisplay);
-    private:
-        ClockDisplay* display;
 };

@@ -2,12 +2,14 @@
 #include "Arduino.h"
 #include "Time.h"
 
-void ClockState::onEncoderLeft()
+void ClockState::setDisplay(ClockDisplay* timeDisplay)
 {
+    display = timeDisplay;
 }
 
-void ClockState::onEncoderRight()
+void ClockState::tick()
 {
+    display->displayTime(getHour(), getMinute(), 0);
 }
 
 SetTimeState::SetTimeState()
@@ -70,11 +72,9 @@ void SetTimeState::setIncrement()
 {
     int time = millis();
     if ((time - lastUpdate) < 100) {
-        //Serial.println("FAST");
         increment = 10;
     }
     else if ((time - lastUpdate) > 500) {
-        //Serial.println("SLOW");
         increment = 1;
     }
     lastUpdate = time;
@@ -114,14 +114,4 @@ int DisplayTimeState::getHour()
 int DisplayTimeState::getMinute()
 {
     return minute();
-}
-
-void DisplayTimeState::tick()
-{
-    display->displayTime(getHour(), getMinute(), 0);
-}
-
-void DisplayTimeState::setDisplay(ClockDisplay* clockDisplay)
-{
-    display = clockDisplay;
 }
