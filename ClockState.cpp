@@ -9,7 +9,7 @@ void ClockState::setDisplay(ClockDisplay* timeDisplay)
 
 void ClockState::tick()
 {
-    display->displayTime(getHour(), getMinute(), 0);
+    display->displayTime(getHour(), getMinute(), getSecond());
 }
 
 SetTimeState::SetTimeState()
@@ -18,6 +18,7 @@ SetTimeState::SetTimeState()
     lastUpdate = 0;
     curHour = 0;
     curMinute = 0;
+    curSecond = 0;  // stays 0
 }
 
 SetTimeState::~SetTimeState()
@@ -35,7 +36,7 @@ void SetTimeState::enter()
 void SetTimeState::exit()
 {
     // set clock
-    setTime(curHour, curMinute, second(), day(), month(), year());
+    setTime(curHour, curMinute, curSecond, day(), month(), year());
 }
 
 void SetTimeState::onEncoderLeft()
@@ -92,6 +93,11 @@ int SetTimeState::getMinute()
     return curMinute;
 }
 
+int SetTimeState::getSecond()
+{
+    return curSecond;
+}
+
 DisplayTimeState::DisplayTimeState()
 {
 }
@@ -116,4 +122,9 @@ int DisplayTimeState::getHour()
 int DisplayTimeState::getMinute()
 {
     return minute();
+}
+
+int DisplayTimeState::getSecond()
+{
+    return second();
 }
