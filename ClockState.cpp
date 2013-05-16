@@ -67,7 +67,7 @@ void SetTimeState::onEncoderRight()
             curHour = 0;
         }
     }
-    display->displayTime(getHour(), getMinute(), 0);
+    tick();
 }
 
 void SetTimeState::setIncrement()
@@ -80,7 +80,7 @@ void SetTimeState::setIncrement()
         increment = 1;
     }
     lastUpdate = time;
-    display->displayTime(getHour(), getMinute(), 0);
+    tick();
 }
 
 int SetTimeState::getHour()
