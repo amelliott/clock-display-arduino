@@ -25,4 +25,7 @@ void ConsoleClockDisplay::displayDate(int month, int day, int year)
     Serial.println(displayString);
 }
 
-
+void ConsoleClockDisplay::clear()
+{
+    Serial.println("");
+}

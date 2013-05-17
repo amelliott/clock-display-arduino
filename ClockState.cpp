@@ -25,6 +25,14 @@ SetTimeState::~SetTimeState()
 {
 }
 
+void SetTimeState::tick()
+{
+    if (second() % 2 == 0)
+        ClockState::tick();
+    else
+        display->clear();
+}
+
 void SetTimeState::enter()
 {
     increment = 1;
@@ -52,6 +60,7 @@ void SetTimeState::onEncoderLeft()
             curHour = 23;
         }
     }
+    ClockState::tick();
 }
 
 void SetTimeState::onEncoderRight()
@@ -67,7 +76,7 @@ void SetTimeState::onEncoderRight()
             curHour = 0;
         }
     }
-    tick();
+    ClockState::tick();
 }
 
 void SetTimeState::setIncrement()
@@ -80,7 +89,6 @@ void SetTimeState::setIncrement()
         increment = 1;
     }
     lastUpdate = time;
-    tick();
 }
 
 int SetTimeState::getHour()

@@ -28,6 +28,7 @@ class SetTimeState : public ClockState {
         int getHour();
         int getMinute();
         int getSecond();
+        void tick();
     private:
         void setIncrement();
         volatile int increment;
