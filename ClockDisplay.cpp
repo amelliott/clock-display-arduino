@@ -5,6 +5,7 @@
 ConsoleClockDisplay::ConsoleClockDisplay()
 {
     Serial.begin(115200);
+    blinking = false;
 }
 
 ConsoleClockDisplay::~ConsoleClockDisplay()
@@ -14,8 +15,20 @@ ConsoleClockDisplay::~ConsoleClockDisplay()
 void ConsoleClockDisplay::displayTime()
 {
     char displayString[9];
-    sprintf(displayString, "%02d:%02d:%02d", hour(), minute(), second());
+    if (blinking && second() % 2 == 1)
+        sprintf(displayString, "OFF");
+    else
+        sprintf(displayString, "%02d:%02d:%02d", hour(), minute(), second());
     Serial.println(displayString);
     
 }
 
+void ConsoleClockDisplay::startBlink()
+{
+    blinking = true;
+}
+
+void ConsoleClockDisplay::stopBlink()
+{
+    blinking = false;
+}
