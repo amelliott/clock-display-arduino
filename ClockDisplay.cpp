@@ -1,5 +1,6 @@
 #include "ClockDisplay.h"
 #include "Arduino.h"
+#include "Time.h"
 
 ConsoleClockDisplay::ConsoleClockDisplay()
 {
@@ -10,22 +11,11 @@ ConsoleClockDisplay::~ConsoleClockDisplay()
 {
 }
 
-void ConsoleClockDisplay::displayTime(int hour, int minute, int second)
+void ConsoleClockDisplay::displayTime()
 {
     char displayString[9];
-    sprintf(displayString, "%02d:%02d:%02d", hour, minute, second);
+    sprintf(displayString, "%02d:%02d:%02d", hour(), minute(), second());
     Serial.println(displayString);
     
 }
 
-void ConsoleClockDisplay::displayDate(int month, int day, int year)
-{
-    char displayString[9];
-    sprintf(displayString, "%02d-%02d-%04d", month, day, year);
-    Serial.println(displayString);
-}
-
-void ConsoleClockDisplay::clear()
-{
-    Serial.println("");
-}
