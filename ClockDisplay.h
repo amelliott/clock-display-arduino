@@ -17,6 +17,7 @@ class ConsoleClockDisplay : public ClockDisplay {
         void stopBlink();
     private:
         bool needToBlink();
+        void updateDisplay(char*);
         bool blinking;
         char displayString[9];
 };
