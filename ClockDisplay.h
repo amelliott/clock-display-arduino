@@ -1,3 +1,5 @@
+#ifndef CLOCK_DISPLAY_H
+#define CLOCK_DISPLAY_H
 
 class ClockDisplay {
     public:
@@ -22,3 +24,4 @@ class ConsoleClockDisplay : public ClockDisplay {
         char displayString[9];
 };
 
+#endif
