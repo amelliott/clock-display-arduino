@@ -31,7 +31,8 @@ void NixieClockDisplay::updateDisplay(char* newString)
 void NixieClockDisplay::displayTime()
 {
     char displayString[9];
-    sprintf(displayString, "%02d:%02d", hour(), minute());
+    //sprintf(displayString, "%02d%s%02d%s", hour(), (second() % 2 == 0 ? ":": ""), minute(), (isAM() ? "'": "."));
+    sprintf(displayString, "%02d:%02d%s", hour(), minute(), (isAM() ? "'": "."));
     updateDisplay(displayString);
 }
 
