@@ -1,19 +1,27 @@
+#ifndef CLOCK_DISPLAY_H
+#define CLOCK_DISPLAY_H
 
 class ClockDisplay {
-    //enum HourMode {12Hour, 24Hour};
-
     public:
-        virtual void displayTime(int hour, int minute, int second) = 0;
-        virtual void displayDate(int month, int day, int year) = 0;
-        virtual void clear() = 0;
-        //virtual void setHourMode(HourMode mode) = 0;
+        virtual void displayTime() = 0;
+        virtual void displayDate() = 0;
+        virtual void startBlink() = 0;
+        virtual void stopBlink() = 0;
 };
 
 class ConsoleClockDisplay : public ClockDisplay {
     public:
         ConsoleClockDisplay();
         ~ConsoleClockDisplay();
-        void displayTime(int hour, int minute, int second);
-        void displayDate(int month, int day, int year);
-        void clear();
+        void displayTime();
+        void displayDate();
+        void startBlink();
+        void stopBlink();
+    private:
+        bool needToBlink();
+        void updateDisplay(char*);
+        bool blinking;
+        char displayString[9];
 };
+
+#endif
