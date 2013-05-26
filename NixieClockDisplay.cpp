@@ -5,6 +5,7 @@
 NixieClockDisplay::NixieClockDisplay(int din, int st, int sh, int oe)
 {
     tube = new NixieTube(din, st, sh, oe, 4);
+    tube->clear();
     blinking = false;
 }
 
@@ -32,7 +33,7 @@ void NixieClockDisplay::displayTime()
 {
     char displayString[9];
     //sprintf(displayString, "%02d%s%02d%s", hour(), (second() % 2 == 0 ? ":": ""), minute(), (isAM() ? "'": "."));
-    sprintf(displayString, "%02d:%02d%s", hour(), minute(), (isAM() ? "'": "."));
+    sprintf(displayString, "%02d:%02d%s", hourFormat12(), minute(), (isAM() ? "'": "."));
     updateDisplay(displayString);
 }
 
