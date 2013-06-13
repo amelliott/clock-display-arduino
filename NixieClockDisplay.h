@@ -10,11 +10,14 @@ class NixieClockDisplay : public ClockDisplay {
         void displayDate();
         void startBlink();
         void stopBlink();
+        void turnOn();
+        void turnOff();
     private:
         bool needToBlink();
         void updateDisplay(char*);
         bool blinking;
         char displayString[9];
+        bool on;
         NixieTube* tube;
 };
 

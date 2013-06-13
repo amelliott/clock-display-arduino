@@ -7,6 +7,7 @@ NixieClockDisplay::NixieClockDisplay(int din, int st, int sh, int oe)
     tube = new NixieTube(din, st, sh, oe, 4);
     tube->clear();
     blinking = false;
+    on = true;
 }
 
 NixieClockDisplay::~NixieClockDisplay()
@@ -20,6 +21,8 @@ bool NixieClockDisplay::needToBlink()
 
 void NixieClockDisplay::updateDisplay(char* newString)
 {
+    if (!on)
+        return;
     // if string is different, display it no matter what
     if (strcmp(newString, displayString) != 0)
         strcpy(displayString, newString);
@@ -52,4 +55,15 @@ void NixieClockDisplay::startBlink()
 void NixieClockDisplay::stopBlink()
 {
     blinking = false;
+}
+
+void NixieClockDisplay::turnOn()
+{
+    on = true;
+}
+
+void NixieClockDisplay::turnOff()
+{
+    updateDisplay("");
+    on = false;  // set this after, or display is not cleared
 }

@@ -7,6 +7,8 @@ class ClockDisplay {
         virtual void displayDate() = 0;
         virtual void startBlink() = 0;
         virtual void stopBlink() = 0;
+        virtual void turnOn() = 0;
+        virtual void turnOff() = 0;
 };
 
 class ConsoleClockDisplay : public ClockDisplay {
